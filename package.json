@@ -1,0 +1,29 @@
+{
+  "name": "srttrans",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "bin": {
+    "srttrans": "dist/index.js"
+  },
+  "scripts": {
+    "link-cli": "pnpm unlink && pnpm link --global",
+    "dev": "tsc -w"
+  },
+  "keywords": [],
+  "author": "Daniel Nguyen",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.2.0",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.25.1",
+    "cache-manager": "^5.7.6",
+    "commander": "^12.1.0",
+    "lowdb": "^7.0.1",
+    "node-cache": "^5.1.2",
+    "subtitle": "^4.2.1"
+  }
+}
