@@ -14,10 +14,10 @@ const translator = new AnthropicTranslator()
 
 program
   .command('translate')
-  .description('Translate an SRT file')
+  .description('translate an SRT file')
   .argument('<path>', 'path to SRT file')
-  .option('-s, --source <string>', 'source language')
-  .option('-t, --target <string>', 'target language')
+  .option('-s, --source <string>', 'source language', 'English')
+  .option('-t, --target <string>', 'target language', 'Vietnamese')
   .action(async (path, options) => {
     const chunkSize = 50
     const input = fs.readFileSync(path, 'utf-8')
@@ -25,13 +25,13 @@ program
     console.log(`Total nodes: ${nodes.length}`)
 
     for (let i = 0; i < nodes.length; i += chunkSize) {
-      console.log(`Translating chunk ${i} to ${i + chunkSize}`)
+      console.log(`Translating nodes: ${i} to ${i + chunkSize}`)
       const chunk = nodes.slice(i, i + chunkSize)
       const text = chunk.map(node => node.type === 'cue' ? node.data.text : '').join('%%%')
       const translatedText = await translator.translate({
         text,
-        source: options.source || 'english',
-        target: options.target || 'vietnamese'
+        source: options.source,
+        target: options.target
       })
 
       const translatedTextArr = translatedText.split('%%%')

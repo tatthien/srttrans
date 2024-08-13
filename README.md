@@ -43,3 +43,23 @@ Commands:
   translate [options] <path>  translate an SRT file
   help [command]              display help for command
 ```
+
+### Command details
+
+#### translate
+
+This command translates an SRT file. It receives the path to the SRT file as an argument and provides two options: `--source` and `--target` languages.
+
+```
+Usage: index translate [options] <path>
+
+translate an SRT file
+
+Arguments:
+  path                   path to SRT file
+
+Options:
+  -s, --source <string>  source language (default: "English")
+  -t, --target <string>  target language (default: "Vietnamese")
+  -h, --help             display help for command
+```
