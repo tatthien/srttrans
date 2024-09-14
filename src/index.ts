@@ -21,8 +21,11 @@ program
   .action(async (path, options) => {
     const chunkSize = 50
     const input = fs.readFileSync(path, 'utf-8')
+    const outputPath = path.replace('.srt', '-translated.srt')
     const nodes = parseSync(input)
+
     console.log(`Total nodes: ${nodes.length}`)
+    console.log(`Write to: ${outputPath}`)
 
     for (let i = 0; i < nodes.length; i += chunkSize) {
       console.log(`Translating nodes: ${i} to ${i + chunkSize}`)
@@ -45,7 +48,7 @@ program
       await sleep(1200)
     }
     const output = stringifySync(nodes, { format: 'SRT' })
-    fs.writeFileSync(path.replace('.srt', '-translated.srt'), output)
+    fs.writeFileSync(outputPath, output)
   });
 
 program.parse(process.argv);
